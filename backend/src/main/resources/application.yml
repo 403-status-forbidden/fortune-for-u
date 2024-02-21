@@ -1,6 +1,6 @@
 # Server Setting
 server:
-  port: 5000
+  port: ${SERVER_PORT}
   ssl:
     enabled: false
 
@@ -11,26 +11,21 @@ spring:
   zipkin:
     enabled: false
   rabbitmq:
-    host: i9a403.p.ssafy.io
-    port: 5672
-    username: guest
-    password: guest
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
   template:
     exchange:
       name: externalApiExchange
       type: direct
 
-  # Swagger
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-
   # MariaDB
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://i9a403.p.ssafy.io/fortuneforu
-    username: root
-    password: D8C74FDD9DC1E2B7C2D7F5833C7CF51461904456EE6C0DC65303D9B9D38B346C
+    url: ${MARIADB_URL}
+    username: ${MARIADB_USERNAME}
+    password: ${MARIADB_PASSWORD}
 
   # JPA
   jpa:
@@ -48,16 +43,16 @@ spring:
       client:
         registration:
           google:
-            client-id: 576948301615-rulk67ue42f71ef21f127k8it1leoltd.apps.googleusercontent.com
-            client-secret: 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
-            redirect-uri: "https://i9a403.p.ssafy.io/{action}/oauth2/code/{registrationId}"
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            redirect-uri: ${REDIRECT_URI}
             scope: profile,email  # 받아올 범위
           kakao:
             client-name: Kakao
-            client-id: 657278d8ba559e9c02a066ace48bf99a
-            client-secret: PJdRyUux3xfOy3f5LZra76CSmAyfs521
+            client-id: ${KAKAO_CLIENT_ID}
+            client-secret: ${KAKAO_CLIENT_SECRET}
             client-authentication-method: client_secret_post
-            redirect-uri: "https://i9a403.p.ssafy.io/{action}/oauth2/code/{registrationId}"
+            redirect-uri: ${REDIRECT_URI}
             authorization-grant-type: authorization_code
             scope: profile_nickname, account_email
         provider:
@@ -66,6 +61,7 @@ spring:
             token_uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user_name_attribute: id
+            
 # RabbitMQ Alias
 management:
   endpoints:
@@ -74,19 +70,19 @@ management:
         include: health, prometheus
 
 # Openvidu Alias
-OPENVIDU_URL: https://i9a403.p.ssafy.io:8443
-OPENVIDU_SECRET: MY_SECRET
+OPENVIDU_URL: ${OPENVIDU_URL}
+OPENVIDU_SECRET: ${OPENVIDU_SECRET}
 
 # JWT Alias
 jwt:
   refresh-header: Refresh
-  secret: fortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforufortuneforu
+  secret: ${JWT_SECRET}
 
 # Client Alias
 client:
-  host: i9a403.p.ssafy.io
-  url: https://i9a403.p.ssafy.io
-  endpoint: /redirect
+  host: ${CLIENT_HOST}
+  url: ${CLIENT_URL}
+  endpoint: ${CLIENT_ENDPOINT}
 
 # Logging level
 logging:
