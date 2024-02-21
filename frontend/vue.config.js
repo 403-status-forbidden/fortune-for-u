@@ -8,7 +8,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/': {
-         target: "https://i9a403.p.ssafy.io",
+        target: process.env.VUE_APP_HOST_NAME,
         changeOrigin : true,
       } 
     }
