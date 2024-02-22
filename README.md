@@ -2,7 +2,7 @@
 
 
 ### 서비스 구경하기
-[시연 시나리오](https://github.com/403-status-forbidden/fortune-for-u/blob/main/README.md)
+[시연 시나리오](https://github.com/403-status-forbidden/fortune-for-u/blob/main/%EC%82%B0%EC%B6%9C%EB%AC%BC/%EC%82%B0%EC%B6%9C%EB%AC%BC/%EC%8B%9C%EC%97%B0_%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4.md)
 
 <br/>
 
