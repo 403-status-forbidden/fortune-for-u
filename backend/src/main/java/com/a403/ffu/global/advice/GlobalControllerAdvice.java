@@ -1,24 +1,17 @@
-package com.ssafy.a403.global.advice;
+package com.a403.ffu.global.advice;
 
 import io.jsonwebtoken.ExpiredJwtException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.persistence.EntityNotFoundException;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
 @Slf4j
 @RestControllerAdvice
 public class GlobalControllerAdvice {
-
-    @Value("${client.url}")
-    private String clientUrl;
 
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
@@ -38,7 +31,6 @@ public class GlobalControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<String> runtimeExceptionHandler(Exception e) {
         log.info("RuntimeException: {}", e.getMessage());
-        e.printStackTrace();
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
@@ -50,10 +42,8 @@ public class GlobalControllerAdvice {
     }
 
     @ExceptionHandler(CustomException.class)
-    protected ResponseEntity<?> handleCustomException(CustomException e){
+    protected ResponseEntity<?> handleCustomException(CustomException e) {
         log.error(e.getMessage());
         return ResponseEntity.status(e.getStatus()).body(e.getMessage());
     }
-
-
 }

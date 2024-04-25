@@ -1,32 +1,8 @@
 # Server Setting
 server:
   port: ${SERVER_PORT}
-  ssl:
-    enabled: false
 
 spring:
-  # RabbitMQ
-  main:
-    banner-mode: off
-  zipkin:
-    enabled: false
-  rabbitmq:
-    host: ${RABBITMQ_HOST}
-    port: ${RABBITMQ_PORT}
-    username: ${RABBITMQ_USERNAME}
-    password: ${RABBITMQ_PASSWORD}
-  template:
-    exchange:
-      name: externalApiExchange
-      type: direct
-
-  # MariaDB
-  datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: ${MARIADB_URL}
-    username: ${MARIADB_USERNAME}
-    password: ${MARIADB_PASSWORD}
-
   # JPA
   jpa:
     hibernate:
@@ -35,7 +11,10 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
-  #        dialect: org.hibernate.dialect.H2Dialect
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
 
   # Security
   security:
@@ -61,17 +40,21 @@ spring:
             token_uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user_name_attribute: id
-            
-# RabbitMQ Alias
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health, prometheus
+  # RabbitMQ
+  main:
+    banner-mode: off
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    listener:
+      type: direct
 
 # Openvidu Alias
-OPENVIDU_URL: ${OPENVIDU_URL}
-OPENVIDU_SECRET: ${OPENVIDU_SECRET}
+openvidu:
+  url: ${OPENVIDU_URL}
+  secret: ${OPENVIDU_SECRET}
 
 # JWT Alias
 jwt:
@@ -83,10 +66,3 @@ client:
   host: ${CLIENT_HOST}
   url: ${CLIENT_URL}
   endpoint: ${CLIENT_ENDPOINT}
-
-# Logging level
-logging:
-  level:
-    com:
-      ssafy:
-        a403: trace

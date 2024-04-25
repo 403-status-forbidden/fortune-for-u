@@ -1,4 +1,4 @@
-package com.ssafy.a403.global.advice;
+package com.a403.ffu.global.advice;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

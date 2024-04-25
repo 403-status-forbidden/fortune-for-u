@@ -1,0 +1,14 @@
+spring:
+  # JPA
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+# Logging level
+logging:
+  level:
+    com.a403.ffu: debug
